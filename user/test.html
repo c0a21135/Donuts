@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="jp" dir="ltr">
+                <body>
+
+
+
+        <meta charset="utf-8">
+<button style=" display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 250px;
+    margin: 0 auto;
+    padding: .9em 2em;
+    overflow: hidden;
+    border: 1px solid #2589d0;
+    border-radius: 25px;
+    background-color: #fff;
+    color: #2589d0;
+    font-size: 1em;
+    
+    :hover {
+    background-color: transparent;
+    color: #fff;
+
+    ::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 0;
+    height: 100%;
+    background-color: #2589d0;
+    content: '';
+    transition: width .3s ease;
+}
+
+
+:hover::before {
+    width: 100%;
+}
+
+
+::after {
+    transform: rotate(45deg);
+    width: 5px;
+    height: 5px;
+    margin-left: 10px;
+    border-top: 2px solid #2589d0;
+    border-right: 2px solid #2589d0;
+    content: '';
+}
+
+:hover::after {
+    border-color: #fff;
+}
+
+
+}
+
+    ">ボタンデザイン</button>
+    </body>
+
+
+
+
+
+</html>
