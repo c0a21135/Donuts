@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import pnw.common.DonutsBean;
+import pnw.common.DonutsCountBean;
 import pnw.common.PnwDB;
 
 import javax.servlet.RequestDispatcher;
@@ -74,7 +75,7 @@ public class StockProcessServlet extends HttpServlet {
 
             PreparedStatement stmt = null;
             switch (btn_val) {
-                case "追加":
+                case "新規商品追加":
                     sql = "INSERT INTO donuts (donut_id, donut_name, donut_price) VALUES(?,?,?)";
                     stmt = db.getStmt(sql);
                     stmt.setInt(1, in_id);
@@ -90,7 +91,7 @@ public class StockProcessServlet extends HttpServlet {
 
                     break;
 
-                case "更新":
+                case "在庫更新":
                     sql = "UPDATE stock SET donut_id=?,donut_stock=? WHERE donut_id=?";
                     stmt = db.getStmt(sql);
                     stmt.setInt(1, in_id);
@@ -99,16 +100,35 @@ public class StockProcessServlet extends HttpServlet {
                     int ret3 = stmt.executeUpdate();
                     break;
 
-                case "削除":
+                case "在庫追加":
+                    sql = "select donut_stock from stock WHERE donut_id=?";
+                    stmt = db.getStmt(sql);
+                    stmt.setInt(1, in_id);
+                    rs = stmt.executeQuery();
+                    int def_quantity=0;
+                    while (rs.next()) {
+                        // カラムの値を取得する
+                        def_quantity = rs.getInt("donut_stock");
+                    }
+
+                    sql = "UPDATE stock SET donut_id=?,donut_stock=? WHERE donut_id=?";
+                    stmt = db.getStmt(sql);
+                    stmt.setInt(1, in_id);
+                    stmt.setInt(2, (in_quantity+def_quantity));
+                    stmt.setInt(3, in_id);
+                    int ret4 = stmt.executeUpdate();
+                    break;
+
+                case "商品削除":
                     sql = "DELETE FROM stock WHERE donut_id=?";
                     stmt = db.getStmt(sql);
                     stmt.setInt(1, in_id);
-                    int ret4 = stmt.executeUpdate();
+                    int ret5 = stmt.executeUpdate();
                     
                     sql = "DELETE FROM donuts WHERE donut_id=?";
                     stmt = db.getStmt(sql);
                     stmt.setInt(1, in_id);
-                    int ret5 = stmt.executeUpdate();
+                    int ret6 = stmt.executeUpdate();
                     break;
 
             }

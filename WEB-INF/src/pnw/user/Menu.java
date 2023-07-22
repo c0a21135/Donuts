@@ -1,4 +1,4 @@
-package pnw;
+package pnw.user;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -18,13 +18,13 @@ import pnw.common.UsersBean;
 
 import javax.servlet.RequestDispatcher;
 
-@WebServlet("/UsersProcessServlet")
-public class UsersProcessServlet extends HttpServlet {
+@WebServlet("/Menu")
+public class Menu extends HttpServlet {
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsersProcessServlet() {
+    public Menu() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,55 +40,14 @@ public class UsersProcessServlet extends HttpServlet {
 
         ResultSet rs;
         String forwardURL = null;
-        // ボタンの値を取得する．
-        String btn_val = request.getParameter("btn");
 
         try {
-            /** DB接続に関する共通部 START **/
-            // DB接続してStatementを取得する．
             PnwDB db = new PnwDB("2023g03");
             String sql = null;
 
             HttpSession session = request.getSession();
 
-            // String completedParam = request.getParameter("completed");
-            // int completed = Integer.parseInt(completedParam);
-            int completed = 0;
-
             PreparedStatement stmt = null;
-            switch (btn_val) {
-                case "カートへ":
-                String nickname = request.getParameter("nickname");
-                    
-                    int uid = 999;
-                    UsersBean an_user;
-
-                    // sessionでuserが作られていない場合はuserを作成する
-                    if (session.getAttribute("user") == null) {
-                        sql = "INSERT INTO users (nickname,completed) VALUES(?,?)";
-                        stmt = db.getStmt(sql);
-                        stmt.setString(1, nickname);
-                        stmt.setInt(2, completed);
-                        int ret4 = stmt.executeUpdate();
-                        ResultSet id = stmt.getGeneratedKeys();
-                        if (id.next()) {
-                            uid = id.getInt(1);
-                        }
-                        // ログインしたユーザをUsersBeanオブジェクトに格納して購入ページへ送信
-                        an_user = new UsersBean(nickname, completed);
-                        an_user.setDockedNumber(uid);
-                        session.setAttribute("user", an_user);
-                    }
-                    
-                    String nonecart = "";
-                    session.setAttribute("nonecart", nonecart);
-                    break;
-            }
-            // 個別の処理が終わったら，再度，DBから一覧を取得する．
-            // SQL文の作成(プレースホルダーを使うのがわかりやすい)
-            // sql = "SELECT * FROM users";
-            // stmt = db.getStmt(sql);
-            /** DB接続に関する共通部 END **/
 
             sql = "select s.donut_id, d.donut_name, d.donut_price, s.donut_stock from stock s join donuts d on (s.donut_id = d.donut_id)";
             stmt = db.getStmt(sql);
@@ -105,11 +64,17 @@ public class UsersProcessServlet extends HttpServlet {
                 double price = rs.getInt("donut_price");
                 int quantity = rs.getInt("donut_stock");
 
+                // int id = rs.getInt("docked_number");
+                // String name = rs.getString("nickname");
+                // int comp = rs.getInt("completed");
                 // // beanを生成
                 DonutsBean bean = new DonutsBean(name, price, quantity);
                 bean.setDonutId(id);
                 // Listへbeanを追加する．
                 infoArray.add(bean);
+                // bean.setDockedNumber(id);
+                // // Listへbeanを追加する．
+                // infoArray.add(bean);
                 // // 見つかった
                 cnt++;
             }

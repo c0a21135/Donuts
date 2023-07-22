@@ -62,7 +62,7 @@ public class Kakuninn_Servlet extends HttpServlet {
             // String sql = "SELECT tb1.donuts_count, tb2.donut_name, tb2.donut_price FROM
             // shopping_cart tb1 INNER JOIN donuts tb2 ON tb1.donut_id = tb2.donut_id WHERE
             // tb1.docked_number = ? AND ";
-            String sql = "SELECT tb1.donuts_count, tb2.donut_name, tb2.donut_price FROM shopping_cart tb1 JOIN donuts tb2 ON tb1.donut_id = tb2.donut_id JOIN users tb3 ON tb1.docked_number = tb3.docked_number WHERE tb1.docked_number = ? AND tb3.completed = 1";
+            String sql = "SELECT tb1.donuts_count, tb2.donut_name, tb2.donut_price, tb3.docked_number, tb3.nickname, FROM shopping_cart tb1 JOIN donuts tb2 ON tb1.donut_id = tb2.donut_id JOIN users tb3 ON tb1.docked_number = tb3.docked_number WHERE tb1.docked_number = ? AND tb3.completed = 1";
             PreparedStatement stmt = db.getStmt(sql);
             /** DB接続に関する共通部 END **/
             // ?のところに値いれる
@@ -95,20 +95,8 @@ public class Kakuninn_Servlet extends HttpServlet {
                 // 見つかった
                 cnt++;
             }
-            if (cnt == 0) {
-                // 見つからない == 前の人が終わっている
-                String no = "その番号はまだ選んでいるか(completed = 0)、そもそも登録されていないかのどちらかです";
-                request.setAttribute("greeting", no);
-                forwardURL = "/checker/tyuumonn_taiki.jsp";
 
-            } else {
-                // 見つかる＝＝前の人が終わっていないので戻る
-                // String no = "時間を置いてから再度お願いいたします。";
-                // request.setAttribute("greeting", no);
-
-                forwardURL = "/checker/tyuumonn.jsp";
-
-            }
+            forwardURL = "/checker/operate.jsp";
             // requestへセットする．
             request.setAttribute("userlist", list_s);
 

@@ -81,7 +81,7 @@ public class LoginSessionServlet extends HttpServlet {
 				//Listの先頭を取得
 				UserInfoBean info = infoArray.get(0);
 				//Sessionへセットする．
-				session.setAttribute("user", info);
+				session.setAttribute("cuser", info);
 				
 				forwardURL = "/checker/checkerhome.jsp";
 
