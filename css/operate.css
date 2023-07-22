@@ -6,7 +6,7 @@ body{
     padding:0;
     margin:0;
     min-width:800px;
-    min-height: 750px;
+    min-height: 950px;
 }
 
 p{
@@ -77,14 +77,70 @@ header img{
     background-color: rgb(255, 228, 159);
 }
 
+.total {
+    display:flex;
+    /* flex-flow: column; */
+    text-align: left;
+    background-color: rgb(252, 251, 241)
+}
+
+.left {
+    width: 29%;
+    height: auto;
+    /* display:flex;
+    text-align: left; */
+    padding: 30px;
+    margin: auto auto auto 0;
+}
+
+.center-line {
+    background-color: rgb(87, 69, 27);
+    width: 1%;
+    height: auto;
+    /* margin: auto auto auto 0; */
+}
+
+.right {
+    width : 70%;
+    height: auto;
+    /* display:flex;
+    text-align:right; */
+    padding: 30px;
+    margin: 0 0 auto auto;
+}
+
+.page {
+    padding: 15px 15px 0 15px;
+    width: 100%;
+    display:flex;
+    flex-flow: column;
+    text-align: left;
+}
+
+.btn-l {
+    margin: 0;
+    float: left;
+}
+
+.btn-r {
+    float: left;
+    padding: 0 0 0 70%;
+    margin: auto 0 auto auto;
+}
+
 .table{
     background-color: rgb(252, 251, 241);
     padding: 15px 30px;
 }
 
+.table2{
+    background-color: rgb(252, 251, 241);
+    padding: 15px 0;
+}
+
 .design01 {
-    width: 75%;
-    max-width: 800px;
+    /* width: 75%; */
+    /* max-width: 800px; */
     text-align: left;
     border-collapse: collapse;
     border-spacing: 0;
@@ -95,13 +151,27 @@ header img{
     border: solid 1px #778ca3;
    }
    .design01 td {
+    background-color: white;
     padding: 5px;
     border: solid 1px #778ca3;
-   }
+}
+
+
 
 .form{
     background-color: rgb(252, 251, 241);
     padding: 15px;
+}
+
+.form2{
+    background-color: rgb(252, 251, 241);
+    padding: 15px 80px;
+}
+
+.logo {
+    font-size: 30px;
+    color: rgb(98, 63, 15);
+    margin: 0;
 }
 
 footer{
@@ -127,3 +197,7 @@ footer{
 .bottom-li{
     margin: 7px 5px;
 }
+
+
+
+
