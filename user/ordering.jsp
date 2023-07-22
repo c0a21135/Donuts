@@ -4,14 +4,14 @@
 <html>  
 <head>
     <meta charset="UTF-8">
-    <title>注文確定</title>
+    <title>注文処理</title>
     <link rel="stylesheet" type="text/css" href="css/all.css" media="all" id="cssMain">
 </head>
 <body>
     <header>
     <div class="design-brown"></div><div class="design-white"></div>
     <div class="header-logo">
-    <a>注文確定</a>
+    <a>注文処理</a>
     </div>
     <div class="icon">
         <img src="img/TUROto.png">
@@ -28,13 +28,16 @@
     Iterator<DonutsCountBean> ite = dcountBean.iterator();
 
     double sum = 0.0;
-    session.invalidate();
     %>
+
+    <script>
+        setTimeout("location.reload()",1000*3)
+    </script>
 
     <div class="form">
         
         <br>
-        以下の内容で注文を確定しました！<br>
+        以下の内容で注文を確定しています。少々お待ちください。<br>
         整理番号：<%=user.getDockedNumber()%><br>
         名前：<%=user.getNickName()%><br>
         <div class="table">
@@ -63,13 +66,12 @@
 
         合計金額：<%=sum%>円
         </div>
-        <a href="http://pnw.cloud.cs.priv.teu.ac.jp:8080/2023g03/Loginuser">購入登録ページへ戻る</a>
     </div>
 
     <div class="design-white"></div><div class="design-brown"></div><div class="design-white"></div>
     <footer>
     <div class="footer-logo">
-        またのご利用をお待ちしております。
+         画面を変更しないでください...
     </div>
     </footer>
     <div class="design-white"></div><div class="design-brown"></div>

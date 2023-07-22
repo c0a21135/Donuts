@@ -31,7 +31,7 @@
             <div class="design-white"></div><div class="design-brown"></div><div class="design-white"></div>
 
             <div class="form">
-                <h1>あなたのIDは<%=user.getDockedNumber()%>です</h1>
+                <h1>あなたの整理番号は<%=user.getDockedNumber()%>です</h1>
             </div>
 
             <div class="form">
@@ -46,7 +46,8 @@
                     <font face="Impact"><span><%=bean.getDonutName()%>  税込み¥<%=bean.getDonutPrice()%></span></font>
                             <select name="<%=bean.getDonutId()%>">
                             <%
-                            for(int i=0; i<=bean.getQuantity(); i++){
+                            int loopcount = Math.min(bean.getQuantity(), 10);
+                            for(int i=0; i<=loopcount; i++){
                             %>
                             <option value="<%=i%>"><%=i%></option>
 
@@ -61,7 +62,7 @@
                 %>
 
                 <br>
-                <p><b><font color="red"><%String message = (String)request.getAttribute("nonecart");%>
+                <p><b><font color="red"><%String message = (String)session.getAttribute("nonecart");%>
                 <%=message%></font></b></p><br>
 
                 <input type="submit" name="btn" value="注文">
@@ -71,7 +72,7 @@
             <div class="design-white"></div><div class="design-brown"></div><div class="design-white"></div>
             <footer>
             <div class="footer-logo">
-                <a href="http://pnw.cloud.cs.priv.teu.ac.jp:8080/c0a2111648/misuta/user/cartcancel.jsp" style="text-align:left">注文をキャンセルする場合はこちら</a>
+                <p>注文をやめる場合は<a href="./CancelServlet" onclick="return confirm('本当に注文をやめますか？');" style="text-align:left"><font color="red">こちら</font></a>を押してください</p>
             </div>
             </footer>
             <div class="design-white"></div><div class="design-brown"></div>

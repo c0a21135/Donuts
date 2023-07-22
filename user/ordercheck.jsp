@@ -24,28 +24,56 @@
     <%
     UsersBean user = (UsersBean)session.getAttribute("user");
     CartBean cart = (CartBean)session.getAttribute("shoppingcart");
-    
+    LinkedList<DonutsCountBean> dcountBean = cart.getDcountBean();
+    Iterator<DonutsCountBean> ite = dcountBean.iterator();
+    session.setAttribute("nonecart", "");
+
+    double sum = 0.0;
     %>
 
 
 
     <div class="form">
-        <form action="./UsersProcessServlet" method="post">
+        
         <br>
+        こちらの内容で注文を確定します。よろしいですか？<br>
         整理番号：<%=user.getDockedNumber()%><br>
         名前：<%=user.getNickName()%><br>
-        ニックネーム：<input type="text" name="nickname" required><br>
-        <input type="submit" name="btn" value="カートへ">
+        <div class="table">
+            <table class="design01">
+            <tr>
+                <td>種類</td>
+                <td>個数</td>
+                <td>金額</td>
+            </tr>
+            <% //購入内容の表示
+            while(ite.hasNext()){
+                DonutsCountBean bean = ite.next();
+            %>
+            <tr>
+                <td><%=bean.getDonutName()%></td>
+                <td><%=bean.getDonutCount()%></td>
+                <td><%=bean.getDonutPrice()%></td>
+                <%
+                    sum += bean.getDonutPrice()*bean.getDonutCount();
+                %>
+            </tr>
+            <%
+            }
+        %>
+            </table>
+
+        合計金額：<%=sum%>円
+        </div>
+        <form action="./CartCheckingServlet" method="post">
+            <input type="submit" name="btn" value="購入確定">
         </form>
-    </div>
-    <div class="form">
-        <p>商品のラインナップを知りたい方は<a href="http://pnw.cloud.cs.priv.teu.ac.jp:8080/c0a2111648/misuta/stock.jsp">こちら</a></p>
     </div>
 
     <div class="design-white"></div><div class="design-brown"></div><div class="design-white"></div>
     <footer>
     <div class="footer-logo">
-        <a href="http://pnw.cloud.cs.priv.teu.ac.jp:8080/2023g03/checker/checkerlogin.jsp"> 管理者用ログイン ＞</a>
+        <a href="http://pnw.cloud.cs.priv.teu.ac.jp:8080/2023g03/Menu"> 注文画面へ戻る ＞</a>
     </div>
     </footer>
     <div class="design-white"></div><div class="design-brown"></div>
