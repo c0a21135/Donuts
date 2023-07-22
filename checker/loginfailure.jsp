@@ -23,7 +23,7 @@
 
     <div class="form footer-logo">
     <div class="bottom-li"><a>認証に失敗しました。</a></div>
-    <div class="bottom-li"><a href="http://pnw.cloud.cs.priv.teu.ac.jp:8080/c0a211110d/checker/checkerlogin.jsp">戻る ＞</a></div>
+    <div class="bottom-li"><a href="http://pnw.cloud.cs.priv.teu.ac.jp:8080/2023g03/checker/checkerlogin.jsp">戻る ＞</a></div>
     </div>
 
     <div class="design-white"></div><div class="design-brown"></div><div class="design-white"></div>

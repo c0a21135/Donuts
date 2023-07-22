@@ -22,13 +22,14 @@
     <div class="design-white"></div><div class="design-brown"></div><div class="design-white"></div>
 
     <%-- <%
-    UserInfoBean bean = (UserInfoBean)session.getAttribute("user");
+    UserInfoBean bean = (UserInfoBean)session.getAttribute("cuser");
     %>
     <%=bean.getUserID()%>：でログイン中 --%>
     
     <div class="form footer-logo">
-    <div class="bottom-li"><a href="http://pnw.cloud.cs.priv.teu.ac.jp:8080/2023g03/checker/operate_1.jsp">販売用ページ ＞</a></div>
+    <div class="bottom-li"><a href="http://pnw.cloud.cs.priv.teu.ac.jp:8080/2023g03/OperateHomeSurvlet">販売用ページ ＞</a></div>
     <div class="bottom-li"><a href="http://pnw.cloud.cs.priv.teu.ac.jp:8080/2023g03/checker/StockShowServlet">在庫管理 ＞</a></div>
+
     </div>
 
     <div class="design-white"></div><div class="design-brown"></div><div class="design-white"></div>

@@ -7,29 +7,15 @@
                 <title>一覧と更新処理</title>
             </head>
 
-<style>
-.center {
-  text-align: center;
-}
-.center * {
-  margin-right: auto;
-  margin-left: auto;
-}
-</style>
-
             <body>
             <div class="center">
 
-                
                 <h1>注文表</h1>
                 <table border="1">
-                       
                         <tr>
                             <td>数</td>
                             <td>一個の値段</td>
                             <td>ドーナツの名前</td>
-
-
                         </tr>
                         <%
                             ArrayList<UserInfoBean_tyuumonn> list = (ArrayList<UserInfoBean_tyuumonn>)request.getAttribute("userlist");
